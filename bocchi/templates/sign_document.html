@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
+    <title>Sign Document</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,23 +25,6 @@
         .navbar a:hover {
             background-color: #575757;
         }
-        .profile {
-            margin-top: 50px;
-            padding: 20px;
-            background: white;
-            display: inline-block;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .profile img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .profile h2 {
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -52,9 +34,16 @@
         <a href="#">Blockchain</a>
         <a href="{% url 'logout' %}">Cerrar Sesión</a>
     </div>
-    <div class="profile">
-        <img src="{{user_data.userinfo.picture}}" alt="Foto de perfil">
-        <h2>{{user_data.userinfo.name}}</h2>
-    </div>
+    <h2>Agrega un documento para firmar</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Firmar documento</button>
+    </form>
+    <br>
+    <a href="{% url 'verify' %}">Verificar documento firmado</a>
+    {% if message %}
+        <h1>{{message}}</h1>
+    {% endif %} 
 </body>
 </html>
