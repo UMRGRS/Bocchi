@@ -1,6 +1,5 @@
 #Python
 venv
-.env
 
 #Django
 __pycache__/
