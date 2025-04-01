@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-@i@ktpm(^u0(8&fm-ozg(cfm=4p3x3^k0-mudtjveap3)oe@h0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.1.213.119']
+ALLOWED_HOSTS = ['192.168.100.800', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -145,3 +145,4 @@ if ENV_FILE:
 AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
 AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
 AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
