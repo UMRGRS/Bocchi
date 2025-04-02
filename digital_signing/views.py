@@ -8,7 +8,9 @@ from django.core.files.base import ContentFile
 from .models import Document
 from .forms import DocumentForm, VerifySignForm
 import fitz
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def signDocument(request):
     if request.method == "POST":
         form = DocumentForm(request.POST, request.FILES)
@@ -44,7 +46,7 @@ def signDocument(request):
 
     return render(request, "sign_document.html", {"form": form})
 
-
+@csrf_exempt
 def verifyDocument(request):
     mensaje = ""
     mod_message = request.GET.get("message", "")
@@ -86,7 +88,7 @@ def verifyDocument(request):
 
     return render(request, "verify_document.html", {"form": form, "modify_form": VerifySignForm(), "message": mensaje, 'modify_message': mod_message})
 
-
+@csrf_exempt
 def modifyDocument(request):
     message = ""
     doc_id = None  # Define doc_id outside the if block to avoid reference issues
